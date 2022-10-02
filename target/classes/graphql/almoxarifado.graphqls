@@ -1,0 +1,31 @@
+type Almoxarifado{
+
+    id:ID!,
+    entidadeEstoque: Empresa!,
+    descricao: String,
+    responsavel: PessoaFisica!,
+    ativo: Boolean,
+    entidadeGestora: Empresa!
+}
+
+input AlmoxarifadoInput{
+
+    id:ID,
+    entidadeEstoque: ID!,
+    descricao: String,
+    responsavel: ID!,
+    ativo: Boolean!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    almoxarifado(id:ID!):Almoxarifado
+    almoxarifados(entidade:ID!):[Almoxarifado]!
+}
+
+extend type Mutation{
+
+    deletarAlmoxarifado(id:ID!):Boolean
+    salvarAlmoxarifado(almoxarifadoInput:AlmoxarifadoInput!):Almoxarifado!
+}

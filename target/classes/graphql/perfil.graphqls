@@ -1,0 +1,28 @@
+type Perfil{
+
+    id:ID!,
+    descricao: String,
+    ativo: Boolean,
+    entidadeGestora: Empresa!
+}
+
+input PerfilInput{
+
+    id:ID,
+    descricao: String!,
+    ativo: Boolean!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    perfil(id:ID!):Perfil
+    perfis(entidade:ID!):[Perfil]!
+
+}
+
+extend type Mutation{
+
+    deletarPerfil(id:ID!):Boolean
+    salvarPerfil(perfilInput:PerfilInput!):Perfil!
+}

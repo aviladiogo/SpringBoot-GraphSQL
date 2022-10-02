@@ -1,0 +1,58 @@
+type SugestaoCompra{
+
+    id:ID!,
+    curvaCalculo: CurvaAbcz!,
+    coberturaDiasA: Int,
+    coberturaDiasB: Int,
+    coberturaDiasC: Int,
+    coberturaDiasZ: Int,
+    fornecedores:[Fornecedor]!,
+    prazoEntregaCD: Int,
+    prazoEntregaLoja: Int,
+    prazoEntregaTotal: Int,
+    opcaoGiroDia: Int,
+    condicaoPagto: Int,
+    obterEstoqueCD: Int,
+    giroDiaMinimo: Float,
+    compraGrupo: Int,
+    registro: String,
+    usuario: PessoaFisica!,
+    situacao: SituacaoSugestaoCompra!
+    entidadeGestora:Empresa!
+
+}
+
+input SugestaoCompraInput{
+
+    id:ID,
+    curvaCalculo: ID!,
+    coberturaDiasA: Int!,
+    coberturaDiasB: Int!,
+    coberturaDiasC: Int!,
+    coberturaDiasZ: Int!,
+    fornecedores:[Int],
+    prazoEntregaCD: Int!,
+    prazoEntregaLoja: Int!,
+    prazoEntregaTotal: Int!,
+    opcaoGiroDia: Int!,
+    condicaoPagto: Int!,
+    obterEstoqueCD: Int!,
+    giroDiaMinimo: Float!,
+    compraGrupo: Int!,
+    usuario: ID!,
+    situacao: ID!,
+    entidadeGestora:ID!
+}
+
+extend type Query{
+
+    sugestaoCompra(id:ID!):SugestaoCompra
+    sugestoesCompras(entidade:ID!):[SugestaoCompra]!
+    sugestoesComprasPorFiltro(entidade:ID!, filtroSugestaoCompraInput:FiltroSugestaoCompraInput!):[SugestaoCompra]!
+}
+
+extend type Mutation{
+
+    deletarSugestaoCompra(id:ID!):Boolean
+    salvarSugestaoCompra(sugestaoCompraInput:SugestaoCompraInput!):SugestaoCompra!
+}

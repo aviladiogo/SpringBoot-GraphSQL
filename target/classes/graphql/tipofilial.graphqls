@@ -1,0 +1,27 @@
+type TipoFilial{
+
+    id:ID!,
+    descricao:String,
+    vendeProduto:Boolean,
+    entidadeGestora:Empresa!
+}
+
+input TipoFilialInput{
+
+    id:ID,
+    descricao: String!,
+    vendeProduto: Boolean!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    tipoFilial(id:ID!):TipoFilial
+    tipoFiliais(entidade:ID!):[TipoFilial]!
+}
+
+extend type Mutation{
+
+    deletarTipoFilial(id:ID!):Boolean
+    salvarTipoFilial(tipoFilialInput:TipoFilialInput!):TipoFilial!
+}

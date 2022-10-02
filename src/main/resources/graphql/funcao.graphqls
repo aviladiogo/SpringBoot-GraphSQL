@@ -1,0 +1,25 @@
+type Funcao{
+
+    id:ID!,
+    titulo: String,
+    entidadeGestora: Empresa!
+}
+
+input FuncaoInput{
+
+    id:ID,
+    titulo: String!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    funcao(id:ID!):Funcao
+    funcoes(entidade:ID!):[Funcao]!
+}
+
+extend type Mutation{
+
+    deletarFuncao(id:ID!):Boolean
+    salvarFuncao(funcaoInput:FuncaoInput!):Funcao!
+}

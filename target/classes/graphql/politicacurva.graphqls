@@ -1,0 +1,49 @@
+type PoliticaCurva{
+
+    id:ID!,
+    tipoCurva:TipoCurvaAbcz!,
+    diasA:Int,
+    diasB:Int,
+    diasC:Int,
+    diasZ:Int,
+    frequenciaA:Int,
+    frequenciaB:Int,
+    frequenciaC:Int,
+    frequenciaZ:Int,
+    maxDiasA:Int,
+    maxDiasB:Int,
+    maxDiasC:Int,
+    maxDiasZ:Int,
+    entidadeGestora: Empresa!
+}
+
+input PoliticaCurvaInput{
+
+    id:ID,
+    tipoCurva:ID!,
+    diasA:Int!,
+    diasB:Int!,
+    diasC:Int!,
+    diasZ:Int!,
+    frequenciaA:Int!,
+    frequenciaB:Int!,
+    frequenciaC:Int!,
+    frequenciaZ:Int!,
+    maxDiasA:Int!,
+    maxDiasB:Int!,
+    maxDiasC:Int!,
+    maxDiasZ:Int!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    politicaCurva(id:ID!):PoliticaCurva
+    politicaCurvas(entidade:ID!):[PoliticaCurva]!
+}
+
+extend type Mutation{
+
+    deletarPoliticaCurva(id:ID!):Boolean
+    salvarPoliticaCurva(politicaCurvaInput:PoliticaCurvaInput!):PoliticaCurva!
+}

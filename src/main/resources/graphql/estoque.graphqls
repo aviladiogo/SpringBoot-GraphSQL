@@ -1,0 +1,35 @@
+type Estoque{
+
+    id:ID!,
+    entidadeEstoque: Empresa!,
+    almoxarifado: Almoxarifado!,
+    responsavel: PessoaFisica!,
+    produto: Produto!,
+    quantidade: Float,
+    giroVendaDia: Float,
+    entidadeGestora: Empresa!
+}
+
+input EstoqueInput{
+
+    id:ID,
+    entidadeEstoque: ID!,
+    almoxarifado: ID!,
+    responsavel: ID!,
+    produto: ID!,
+    quantidade: Float!,
+    giroVendaDia: Float!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    estoque(id:ID!):Estoque
+    estoques(entidade:ID!):[Estoque]!
+}
+
+extend type Mutation{
+
+    deletarEstoque(id:ID!):Boolean
+    salvarEstoque(estoqueInput:EstoqueInput!):Estoque!
+}

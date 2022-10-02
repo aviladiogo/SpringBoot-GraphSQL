@@ -1,0 +1,69 @@
+type SugestaoCompraItem{
+
+    filial:Filial!,
+    produto:Produto!,
+    curvaABCZ:CurvaAbcz!,
+    estoqueAtual:Int,
+    estoqueMinimo:Int,
+    estoqueIdeal:Int,
+    giroDia:Int,
+    estoqueTransitoCDLoja:Int,
+    estoqueTransitoFornCD:Int,
+    estoqueTransitoTotal:Int,
+    qtdeBrutaAComprar:Int,
+    estoqueCD:Int,
+    multiploCompra:Int,
+    qtdeFinalAComprar:Int,
+    diasEstoqueAtual:Int,
+    diasEstoquePosCompra:Int,
+    qtdeVenda3ULTMeses:Int,
+    qtdeVendaMesAtual:Int,
+    clientesPositivados:Int,
+    variacaoMediaCP3ULTMeses:Int,
+    qtdeVendaFuturaMes1:Int,
+    qtdeVendaFuturaMes2:Int,
+    qtdeVendaFuturaMes3:Int,
+    entidadeGestora: Empresa!
+
+}
+
+input SugestaoCompraItemInput{
+
+    filial:ID,
+    produto:ID,
+    curvaABCZ:ID!,
+    estoqueAtual:Int!,
+    estoqueMinimo:Int!,
+    estoqueIdeal:Int!,
+    giroDia:Int!,
+    estoqueTransitoCDLoja:Int!,
+    estoqueTransitoFornCD:Int!,
+    estoqueTransitoTotal:Int!,
+    qtdeBrutaAComprar:Int!,
+    estoqueCD:Int!,
+    multiploCompra:Int!,
+    qtdeFinalAComprar:Int!,
+    diasEstoqueAtual:Int!,
+    diasEstoquePosCompra:Int!,
+    qtdeVenda3ULTMeses:Int!,
+    qtdeVendaMesAtual:Int!,
+    clientesPositivados:Int!,
+    variacaoMediaCP3ULTMeses:Int!,
+    qtdeVendaFuturaMes1:Int!,
+    qtdeVendaFuturaMes2:Int!,
+    qtdeVendaFuturaMes3:Int!
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    sugestaoCompraItem(id:ID!):SugestaoCompraItem
+    sugestoesComprasItens(entidade:ID!):[SugestaoCompraItem]!
+}
+
+extend type Mutation{
+
+    deletarSugestaoCompraItem(id:ID!):Boolean
+    salvarSugestaoCompraItem(sugestaoCompraItemInput:SugestaoCompraItemInput!):SugestaoCompraItem!
+    atualizarSugestaoCompraItem(id:ID!, sugestaoCompraItemInput:SugestaoCompraItemInput!):SugestaoCompraItem!
+}

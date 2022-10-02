@@ -1,0 +1,30 @@
+type CompradorSecao{
+
+    comprador:ID!,
+    limiteCompra: Float,
+    ativo: Int,
+    secao: Secao!,
+    entidadeGestora: Empresa!
+}
+
+input CompradorSecaoInput{
+
+    comprador:ID,
+    limiteCompra: Float!,
+    ativo: Int!,
+    secao: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    compradorSecao(id:ID!):CompradorSecao
+    compradoresSecao(entidade:ID!):[CompradorSecao]!
+}
+
+extend type Mutation{
+
+    deletarCompradorSecao(id:ID!):Boolean
+    salvarCompradorSecao(compradorSecaoInput:CompradorSecaoInput!):CompradorSecao!
+    atualizarCompradorSecao(compradorSecaoInput:CompradorSecaoInput!):CompradorSecao!
+}

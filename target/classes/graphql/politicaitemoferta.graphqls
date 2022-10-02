@@ -1,0 +1,33 @@
+type PoliticaItemOferta{
+
+    id:ID!,
+    itemOferta: Int,
+    quantidadeMinima: Int,
+    quantidadeMaxima: Int,
+    precoUnitario: Float,
+    percentualDesconto: Float,
+    entidadeGestora: Empresa!
+}
+
+input PoliticaItemOfertaInput{
+
+    id:ID,
+    itemOferta: Int!,
+    quantidadeMinima: Int!,
+    quantidadeMaxima: Int!,
+    precoUnitario: Float!,
+    percentualDesconto: Float!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    politicaItemOferta(id:ID!):PoliticaItemOferta
+    politicaItensOferta(entidade:ID!):[PoliticaItemOferta]!
+}
+
+extend type Mutation{
+
+    deletarPoliticaItemOferta(id:ID!):Boolean
+    salvarPoliticaItemOferta(politicaItemOfertaInput:PoliticaItemOfertaInput!):PoliticaItemOferta!
+}

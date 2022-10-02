@@ -1,0 +1,25 @@
+type CurvaGiroVendaDia{
+
+    id:ID!,
+    valorGiroDia: Float,
+    entidadeGestora: Empresa!
+}
+
+input CurvaGiroVendaDiaInput{
+
+    id:ID,
+    valorGiroDia: Float!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    curvaGiroVendaDia(id:ID!):CurvaGiroVendaDia
+    curvasGiroVendaDia(entidade:ID!):[CurvaGiroVendaDia]!
+}
+
+extend type Mutation{
+
+    deletarCurvaGiroVendaDia(id:ID!):Boolean
+    salvarCurvaGiroVendaDia(curvaGiroVendaDiaInput:CurvaGiroVendaDiaInput!):CurvaGiroVendaDia!
+}

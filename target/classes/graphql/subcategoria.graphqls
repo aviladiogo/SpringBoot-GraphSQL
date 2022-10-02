@@ -1,0 +1,31 @@
+type SubCategoria{
+
+    id:ID!,
+    descricao: String,
+    categoria: Categoria!,
+    registro: String,
+    usuario: PessoaFisica!,
+    entidade: PessoaJuridica!
+}
+
+input SubCategoriaInput{
+
+    id:ID,
+    descricao: String!,
+    categoria: ID!,
+    usuario: ID!,
+    entidade: ID!
+}
+
+extend type Query{
+
+    subCategoria(id:ID!):SubCategoria
+    subCategorias(entidade:ID!):[SubCategoria]!
+    subCategoriasPorCategoria(entidade:ID!, categoria:ID!):[SubCategoria]!
+}
+
+extend type Mutation{
+
+    deletarSubCategoria(id:ID!):Boolean
+    salvarSubCategoria(subCategoriaInput:SubCategoriaInput!):SubCategoria!
+}

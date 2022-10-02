@@ -1,0 +1,49 @@
+type Fornecedor{
+
+    id:ID!,
+    tipoPessoa: String,
+    nomeFornecedor: String,
+    responsavel: PessoaFisica,
+    ativo: Boolean,
+    prazoEntrega: Int,
+    pedidoMinimo: Float,
+    compradorPadrao: PessoaFisica!,
+    pessoaFisica: PessoaFisica,
+    pessoaJuridica: PessoaJuridica
+    produtos:[Produto],
+    entidadeGestora: Empresa!
+}
+
+input FornecedorInput{
+
+    id:ID
+    tipoPessoa: String!,
+    responsavel: ID,
+    ativo: Boolean!,
+    prazoEntrega: Int!,
+    pedidoMinimo: Float!,
+    compradorPadrao: ID!,
+    pessoaFisica: ID,
+    pessoaJuridica: ID.
+    produtos:[Int],
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    fornecedor(id:ID!):Fornecedor
+    fornecedores(entidade:ID!):[Fornecedor]!
+    obterFornecedoresPorProduto(entidade:ID!, produto:ID!):[Fornecedor]!
+    obterFornecedoresPorCriterio(entidade:ID!, criterioBusca:String!):[Fornecedor]!
+    obterFornecedoresPorDepartamento(entidade:ID!, departamento:ID!):[Fornecedor]!
+    obterFornecedoresPorSecao(entidade:ID!, secao:ID!):[Fornecedor]!
+    obterFornecedoresPorCategoria(entidade:ID!, categoria:ID!):[Fornecedor]!
+    obterFornecedoresPorSubCategoria(entidade:ID!, subCategoria:ID!):[Fornecedor]!
+}
+
+extend type Mutation{
+
+    deletarFornecedor(id:ID!):Boolean
+    salvarFornecedor(fornecedorInput:FornecedorInput!):Fornecedor!
+    salvarProdutosPorFornecedor(id: ID!, listaProdutos:[Int]!):Fornecedor!
+}

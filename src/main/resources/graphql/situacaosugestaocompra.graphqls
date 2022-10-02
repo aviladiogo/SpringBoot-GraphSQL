@@ -1,0 +1,28 @@
+type SituacaoSugestaoCompra{
+
+    id:ID!,
+    descricao: String,
+    permiteEditar: Int,
+    entidadeGestora: Empresa!
+
+}
+
+input SituacaoSugestaoCompraInput{
+
+    id:ID,
+    descricao: String!,
+    permiteEditar: Int!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    situacaoSugestaoCompra(id:ID!):SituacaoSugestaoCompra
+    situacoesSugestaoCompras(entidade:ID!):[SituacaoSugestaoCompra]!
+}
+
+extend type Mutation{
+
+    deletarSituacaoSugestaoCompra(id:ID!):Boolean
+    salvarSituacaoSugestaoCompra(situacaoSugestaoCompraInput:SituacaoSugestaoCompraInput!):SituacaoSugestaoCompra!
+}

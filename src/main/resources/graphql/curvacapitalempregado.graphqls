@@ -1,0 +1,27 @@
+type CurvaCapitalEmpregado{
+
+    id:ID!,
+    valorCapital: Float,
+    frequencia: Float,
+    entidadeGestora: Empresa!
+}
+
+input CurvaCapitalEmpregadoInput{
+
+    id:ID,
+    valorCapital: Float!,
+    frequencia: Float!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    curvaCapitalEmpregado(id:ID!):CurvaCapitalEmpregado
+    curvasCapitalEmpregado(entidade:ID!):[CurvaCapitalEmpregado]!
+}
+
+extend type Mutation{
+
+    deletarCurvaCapitalEmpregado(id:ID!):Boolean
+    salvarCurvaCapitalEmpregado(curvaCapitalEmpregadoInput:CurvaCapitalEmpregadoInput!):CurvaCapitalEmpregado!
+}

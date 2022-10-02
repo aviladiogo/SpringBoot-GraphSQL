@@ -1,0 +1,27 @@
+type Colaborador{
+
+    id:ID!,
+    descricao: String,
+    funcao: Funcao!,
+    entidadeGestora: Empresa!
+}
+
+input ColaboradorInput{
+
+    id:ID,
+    descricao: String!,
+    funcao: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    colaborador(id:ID!):Colaborador
+    colaboradores(entidade:ID!):[Colaborador]!
+}
+
+extend type Mutation{
+
+    deletarColaborador(id:ID!):Boolean
+    salvarColaborador(colaboradorInput:ColaboradorInput!):Colaborador!
+}

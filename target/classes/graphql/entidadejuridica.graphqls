@@ -1,0 +1,25 @@
+type EntidadeJuridica{
+
+    id:ID!,
+    descricao: String,
+    entidadeGestora: Empresa!
+}
+
+input EntidadeJuridicaInput{
+
+    id:ID,
+    descricao: String!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    entidadeJuridica(id:ID!):EntidadeJuridica
+    entidadesJuridicas(entidade:ID!):[EntidadeJuridica]!
+}
+
+extend type Mutation{
+
+    deletarEntidadeJuridica(id:ID!):Boolean
+    salvarEntidadeJuridica(entidadesJuridicasInput:EntidadeJuridicaInput!):EntidadeJuridica!
+}

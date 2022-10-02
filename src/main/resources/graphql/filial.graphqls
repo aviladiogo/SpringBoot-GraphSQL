@@ -1,0 +1,43 @@
+type Filial{
+
+    id:ID!,
+    responsavel: PessoaFisica!,
+    supervisor: PessoaFisica!,
+    ativo: Boolean,
+    dataAbertura: String,
+    uf: String,
+    grupoFilial: GrupoFilial!,
+    grupoCompraInterno:GrupoCompra!,
+    grupoCompraExterno:GrupoCompra!,
+    tipoFilial:TipoFilial!,
+    observacao:String,
+    entidadeGestora:Empresa!
+}
+
+input FilialInput{
+
+   id:ID,
+    responsavel: ID!,
+    supervisor: ID!,
+    ativo: Boolean!,
+    uf: String!,
+    grupoFilial: ID!,
+    grupoCompraInterno:ID!,
+    grupoCompraExterno: ID!,
+    tipoFilial:ID!,
+    observacao:String!,
+    entidadeGestora:ID!
+}
+
+extend type Query{
+
+    filial(id:ID!):Filial
+    filiais(entidade:ID!):[Filial]!
+    filiaisPorGrupoCompraInterno(entidade:ID!, grupoCompraInterno:ID!):[Filial]!
+}
+
+extend type Mutation{
+
+    deletarFilial(id:ID!):Boolean
+    salvarFilial(filialInput:FilialInput!):Filial!
+}

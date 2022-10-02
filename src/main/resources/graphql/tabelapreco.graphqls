@@ -1,0 +1,37 @@
+type TabelaPreco{
+
+    id:ID!,
+    fornecedores: [Fornecedor],
+    responsavel: PessoaFisica!,
+    promocao: Boolean,
+    titulo: String,
+    inicioValidade: String,
+    terminoValidade: String,
+    ativo: Boolean,
+    entidadeGestora: Empresa!
+}
+
+input TabelaPrecoInput{
+
+    id:ID,
+    fornecedores: [Int],
+    responsavel: ID!,
+    promocao: Boolean!,
+    titulo: String!,
+    inicioValidade: String!,
+    terminoValidade: String!,
+    ativo: Boolean!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    tabelaPreco(id:ID!):TabelaPreco
+    tabelaPrecos(entidade:ID!):[TabelaPreco]!
+}
+
+extend type Mutation{
+
+    deletarTabelaPreco(id:ID!):Boolean
+    salvarTabelaPreco(tabelaPrecoInput:TabelaPrecoInput!):TabelaPreco!
+}

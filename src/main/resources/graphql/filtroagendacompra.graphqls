@@ -1,0 +1,25 @@
+type FiltroAgendaCompra{
+
+    comprador:Comprador!,
+    dataInicio:String,
+    dataFim:String,
+    fornecedores:[Fornecedor]!,
+    entidadeGestora:Empresa!
+}
+
+input FiltroAgendaCompraInput{
+
+    comprador:ID,
+    dataInicio:String,
+    dataFim:String,
+    fornecedores:[Int],
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+}
+
+extend type Mutation{
+
+}

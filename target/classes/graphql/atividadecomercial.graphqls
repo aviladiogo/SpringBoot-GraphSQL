@@ -1,0 +1,31 @@
+type AtividadeComercial{
+
+    id:ID!,
+    descricao: String,
+    ramoAtividade: RamoAtividade!,
+    registro: String,
+    usuario: PessoaFisica!,
+    entidadeGestora: Empresa!
+}
+
+input AtividadeComercialInput{
+
+    id:ID,
+    descricao: String!,
+    ramoAtividade: ID!,
+    usuario: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    atividadeComercial(id:ID!):AtividadeComercial
+    atividadesComerciais(entidade:ID!):[AtividadeComercial]!
+    atividadesComerciaisPorRamoAtividade(entidade:ID!, ramoAtividade:ID!):[AtividadeComercial]!
+}
+
+extend type Mutation{
+
+    deletarAtividadeComercial(id:ID!):Boolean
+    salvarAtividadeComercial(atividadeComercialInput:AtividadeComercialInput!):AtividadeComercial!
+}

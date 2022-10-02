@@ -1,0 +1,31 @@
+type Secao{
+
+    id:ID!,
+    descricao: String,
+    departamento: Departamento!,
+    registro: String,
+    usuario: PessoaFisica!,
+    entidade: PessoaJuridica!
+}
+
+input SecaoInput{
+
+    id:ID,
+    descricao: String!,
+    departamento: ID!,
+    usuario: ID!,
+    entidade: ID!
+}
+
+extend type Query{
+
+    secao(id:ID!):Secao
+    secoes(entidade:ID!):[Secao]!
+    secoesPorDepartamento(entidade:ID!, departamento:ID!):[Secao]!
+}
+
+extend type Mutation{
+
+    deletarSecao(id:ID!):Boolean
+    salvarSecao(secaoInput:SecaoInput!):Secao!
+}

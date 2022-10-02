@@ -1,0 +1,31 @@
+type Permissao{
+
+    id:ID!,
+    descricao: String,
+    perfil: Perfil,
+    usuario: Usuario,
+    transacao: Transacao!,
+    entidadeGestora: Empresa!
+}
+
+input PermissaoInput{
+
+    id:ID,
+    descricao: String!,
+    perfil: ID,
+    usuario: ID,
+    transacao: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    permissao(id:ID!):Permissao
+    permissoes(entidade:ID!):[Permissao]!
+}
+
+extend type Mutation{
+
+    deletarPermissao(id:ID!):Boolean
+    salvarPermissao(permissaoInput:PermissaoInput!):Permissao!
+}

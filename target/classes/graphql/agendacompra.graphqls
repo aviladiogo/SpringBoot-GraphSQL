@@ -1,0 +1,61 @@
+type AgendaCompra{
+
+    id:ID!,
+    titulo: String,
+    comprador: Comprador!,
+    frequencia: Int,
+    inicioAgendaCompra: String,
+    terminoAgendaCompra: String,
+    domingo: Int,
+    segunda: Int,
+    terca: Int,
+    quarta: Int, 
+    quinta: Int,
+    sexta: Int,
+    sabado: Int,
+    ativo: Int,
+    departamento: Departamento,
+    secao: Secao,
+    categoria: Categoria,
+    subCategoria: SubCategoria,
+    fornecedores:[Fornecedor],
+    entidadeGestora: Empresa!
+}
+
+input AgendaCompraInput{
+
+    id:ID,
+    titulo: String!,
+    comprador: ID!,
+    frequencia: Int!,
+    inicioAgendaCompra: String!,
+    terminoAgendaCompra: String,
+    domingo: Int!,
+    segunda: Int!,
+    terca: Int!,
+    quarta: Int!, 
+    quinta: Int!,
+    sexta: Int!,
+    sabado: Int!,
+    ativo: Int!,
+    departamento: ID,
+    secao: ID,
+    categoria: ID,
+    subCategoria: ID,
+    fornecedores:[Int],
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    agendaCompra(id:ID!):AgendaCompra
+    agendasCompra(entidade:ID!):[AgendaCompra]!
+    agendasCompraPorFiltro(filtroAgendaCompraInput:FiltroAgendaCompraInput!):[AgendaCompra]!
+
+}
+
+extend type Mutation{
+
+    deletarAgendaCompra(id:ID!):Boolean
+    salvarAgendaCompra(agendaCompraInput:AgendaCompraInput!):AgendaCompra!
+}

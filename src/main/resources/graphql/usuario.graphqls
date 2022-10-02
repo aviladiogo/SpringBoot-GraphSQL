@@ -1,0 +1,33 @@
+type Usuario{
+
+    pessoaFisicaId:PessoaFisica!,
+    login: String,
+    senha: String,
+    ativo: Boolean,
+    perfil: Perfil!,
+    entidadeGestora: Empresa!
+}
+
+input UsuarioInput{
+
+    pessoaFisicaId:ID,
+    login: String!,
+    senha: String!,
+    ativo: Boolean!,
+    perfil: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    usuario(id:ID!):Usuario
+    usuarios(entidade:ID!):[Usuario]!
+    validarLogin(login:String!, senha:String!):Usuario
+}
+
+extend type Mutation{
+
+    deletarUsuario(id:ID!):Boolean
+    inserirUsuario(usuarioInput:UsuarioInput!):Usuario!
+    atualizarUsuario(usuarioInput:UsuarioInput!):Usuario!
+}

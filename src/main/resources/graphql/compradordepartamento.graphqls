@@ -1,0 +1,30 @@
+type CompradorDepartamento{
+
+    comprador:ID!,
+    limiteCompra: Float,
+    ativo: Int,
+    departamento: Departamento!,
+    entidadeGestora: Empresa!
+}
+
+input CompradorDepartamentoInput{
+
+    comprador:ID,
+    limiteCompra: Float!,
+    ativo: Int!,
+    departamento: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    compradorDepartamento(id:ID!):CompradorDepartamento
+    compradoresDepartamento(entidade:ID!):[CompradorDepartamento]!
+}
+
+extend type Mutation{
+
+    deletarCompradorDepartamento(id:ID!):Boolean
+    salvarCompradorDepartamento(compradorDepartamentoInput:CompradorDepartamentoInput!):CompradorDepartamento!
+    atualizarCompradorDepartamento(compradorDepartamentoInput:CompradorDepartamentoInput!):CompradorDepartamento!
+}

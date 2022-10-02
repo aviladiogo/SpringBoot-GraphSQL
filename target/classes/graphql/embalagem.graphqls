@@ -1,0 +1,25 @@
+type Embalagem{
+
+    id:ID!,
+    descricao: String,
+    entidadeGestora: Empresa!
+}
+
+input EmbalagemInput{
+
+    id:ID,
+    descricao: String!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    embalagem(id:ID!):Embalagem
+    embalagens(entidade:ID!):[Embalagem]!
+}
+
+extend type Mutation{
+
+    deletarEmbalagem(id:ID!):Boolean
+    salvarEmbalagem(embalagemInput:EmbalagemInput!):Embalagem!
+}

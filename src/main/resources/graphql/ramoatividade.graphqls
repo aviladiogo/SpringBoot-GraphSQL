@@ -1,0 +1,28 @@
+type RamoAtividade{
+
+    id:ID!,
+    descricao: String,
+    registro: String,
+    usuario: PessoaFisica!,
+    entidadeGestora: Empresa!
+}
+
+input RamoAtividadeInput{
+
+    id:ID,
+    descricao: String!,
+    usuario: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    ramoAtividade(id:ID!):RamoAtividade
+    ramoAtividades(entidade:ID!):[RamoAtividade]!
+}
+
+extend type Mutation{
+
+    deletarRamoAtividade(id:ID!):Boolean
+    salvarRamoAtividade(ramoAtividadeInput:RamoAtividadeInput!):RamoAtividade!
+}

@@ -1,0 +1,25 @@
+type TipoPagto{
+
+    id:ID!,
+    titulo: String,
+    entidadeGestora: Empresa!
+}
+
+input TipoPagtoInput{
+
+    id:ID,
+    titulo: String!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    tipoPagto(id:ID!):TipoPagto
+    tiposPagto(entidade:ID!):[TipoPagto]!
+}
+
+extend type Mutation{
+
+    deletarTipoPagto(id:ID!):Boolean
+    salvarTipoPagto(tipoPagtoInput:TipoPagtoInput!):TipoPagto!
+}

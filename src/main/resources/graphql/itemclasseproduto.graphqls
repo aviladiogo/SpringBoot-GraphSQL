@@ -1,0 +1,23 @@
+type ItemClasseProduto{
+
+    classeProduto: Int!,
+    curvaAbcz: CurvaAbcz!
+}
+
+input ItemClasseProdutoInput{
+
+    classeProduto: Int!,
+    curvaAbcz: ID!
+}
+
+extend type Query{
+
+    itemClasseProduto(id:ID!):[ItemClasseProduto]
+    itensClassesProdutos:[ItemClasseProduto]!
+}
+
+extend type Mutation{
+
+    deletarItemClasseProduto(id:ID!):Boolean
+    salvarItemClasseProduto(classeProdutoId:ID!, curvas:[Int]!):ItemClasseProduto!
+}

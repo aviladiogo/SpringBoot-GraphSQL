@@ -1,0 +1,31 @@
+type PessoaFisica{
+
+    id:ID!,
+    nome: String,
+    apelido: String,
+    cpf: String,
+    email: String, 
+    entidade:Empresa!
+}
+
+input PessoaFisicaInput{
+
+    id:ID,
+    nome: String!,
+    apelido: String!,
+    cpf: String!,
+    email: String!, 
+    entidade: ID!
+}
+
+extend type Query{
+
+    pessoaFisica(id:ID!):PessoaFisica
+    pessoasFisicas(entidade:ID!):[PessoaFisica]!
+}
+
+extend type Mutation{
+
+    deletarPessoaFisica(id:ID!):Boolean
+    salvarPessoaFisica(pessoaFisicaInput:PessoaFisicaInput!):PessoaFisica!
+}

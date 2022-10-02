@@ -1,0 +1,28 @@
+type TipoFrete{
+
+    id:ID!,
+    descricao: String,
+    registro: String,
+    usuario: PessoaFisica!,
+    entidadeGestora: Empresa!
+}
+
+input TipoFreteInput{
+
+    id:ID,
+    descricao: String!,
+    usuario: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    tipoFrete(id:ID!):TipoFrete
+    tiposFrete(entidade:ID!):[TipoFrete]!
+}
+
+extend type Mutation{
+
+    deletarTipoFrete(id:ID!):Boolean
+    salvarTipoFrete(tipoFreteInput:TipoFreteInput!):TipoFrete!
+}

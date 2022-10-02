@@ -1,0 +1,29 @@
+type Transacao{
+
+    id:ID!,
+    descricao: String,
+    ativo: Boolean,
+    modulo: Modulo!,
+    entidadeGestora: Empresa!
+}
+
+input TransacaoInput{
+
+    id:ID,
+    descricao: String!,
+    ativo: Boolean!,
+    modulo: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    transacao(id:ID!):Transacao
+    transacoes(entidade:ID!):[Transacao]!
+}
+
+extend type Mutation{
+
+    deletarTransacao(id:ID!):Boolean
+    salvarTransacao(transacaoInput:TransacaoInput!):Transacao!
+}

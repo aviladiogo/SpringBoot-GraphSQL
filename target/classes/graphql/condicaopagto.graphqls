@@ -1,0 +1,31 @@
+type CondicaoPagto{
+
+    id:ID!,
+    titulo: String,
+    descricao: String,
+    parcelas: Int,
+    prazoParcelas: PrazoParcela!,
+    entidadeGestora: Empresa!
+}
+
+input CondicaoPagtoInput{
+
+    id:ID,
+    titulo: String!,
+    descricao: String!,
+    parcelas: Int!,
+    prazoParcelas: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    condicaoPagto(id:ID!):CondicaoPagto
+    condicoesPagto(entidade:ID!):[CondicaoPagto]!
+}
+
+extend type Mutation{
+
+    deletarCondicaoPagto(id:ID!):Boolean
+    salvarCondicaoPagto(condicaoPagtoInput:CondicaoPagtoInput!):CondicaoPagto!
+}

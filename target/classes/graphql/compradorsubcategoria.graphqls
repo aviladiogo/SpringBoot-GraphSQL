@@ -1,0 +1,30 @@
+type CompradorSubCategoria{
+
+    comprador:ID!,
+    limiteCompra: Float,
+    ativo: Int,
+    subCategoria: SubCategoria!,
+    entidadeGestora: Empresa!
+}
+
+input CompradorSubCategoriaInput{
+
+    comprador:ID,
+    limiteCompra: Float!,
+    ativo: Int!,
+    subCategoria: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    compradorSubCategoria(id:ID!):CompradorSubCategoria
+    compradoresSubCategoria(entidade:ID!):[CompradorSubCategoria]!
+}
+
+extend type Mutation{
+
+    deletarCompradorSubCategoria(id:ID!):Boolean
+    salvarCompradorSubCategoria(compradorSubCategoriaInput:CompradorSubCategoriaInput!):CompradorSubCategoria!
+    atualizarCompradorSubCategoria(compradorSubCategoriaInput:CompradorSubCategoriaInput!):CompradorSubCategoria!
+}

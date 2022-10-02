@@ -1,0 +1,34 @@
+type ItemPedidoVenda{
+
+    id:ID!,
+    tabelaPreco:TabelaPreco!,
+    produto:Produto!,
+    valorUnitario: Float, 
+    qtdeMinima: Int,
+    entidadeGestora: Empresa!
+    
+}
+
+input ItemPedidoVendaInput{
+
+    id:ID,
+    tabelaPreco:ID!,
+    produto:ID!,
+    valorUnitario: Float!, 
+    qtdeMinima: Int!,
+    entidadeGestora: ID!
+    
+}
+
+extend type Query{
+
+    itemPedidoVenda(id:ID!):ItemPedidoVenda
+    itensPedidoVenda(entidade:ID!):[ItemPedidoVenda]!
+    itensPedidoVendaPorTabelaPreco(entidade:ID!, tabelaPreco:ID!):[ItemPedidoVenda]!
+}
+
+extend type Mutation{
+
+    deletarItemPedidoVenda(id:ID!):Boolean
+    salvarItemPedidoVenda(itemPedidoVendaInput:ItemPedidoVendaInput!):ItemPedidoVenda!
+}

@@ -1,0 +1,44 @@
+type Produto{
+
+    id:ID!,
+    descricao: String,
+    ean1: String,
+    ean2: String,
+    codigo_cd: String,
+    subCategoria: SubCategoria!,
+    unidade: Unidade!,
+    fabricante: Fornecedor!,
+    marca: Marca!,
+    embalagem: Embalagem!,
+    apresentacao: Apresentacao!,
+    entidadeGestora: Empresa!
+}
+
+input ProdutoInput{
+
+    id:ID,
+    descricao: String!,
+    ean1: String!,
+    ean2: String!,
+    codigo_cd: String,
+    subCategoria: ID!,
+    unidade: ID!,
+    fabricante: ID!,
+    marca: ID!,
+    embalagem: ID!,
+    apresentacao: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    produto(id:ID!):Produto
+    produtos(entidade:ID!):[Produto]!
+    obterProdutosPorFornecedores(entidade:ID!, fornecedores:[Int]!):[Produto]!
+}
+
+extend type Mutation{
+
+    deletarProduto(id:ID!):Boolean
+    salvarProduto(produtoInput:ProdutoInput!):Produto!
+}

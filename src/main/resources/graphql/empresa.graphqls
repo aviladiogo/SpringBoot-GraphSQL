@@ -1,0 +1,34 @@
+type Empresa{
+
+    id:ID!,
+    nomeFantasia: String,
+    razaoSocial: String,
+    cnpj: String,
+    registro: String,
+    usuario: PessoaFisica!,
+    ativa:Int,
+    entidadeGestora:Int
+}
+
+input EmpresaInput{
+
+    id:ID,
+    nomeFantasia: String!,
+    razaoSocial: String!,
+    cnpj: String!,
+    usuario: ID!,
+    ativa:Int!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    empresa(id:ID!):Empresa
+    empresas(entidade:ID!):[Empresa]!
+}
+
+extend type Mutation{
+
+    deletarEmpresa(id:ID!):Boolean
+    salvarEmpresa(empresaInput:EmpresaInput!):Empresa!
+}

@@ -1,0 +1,27 @@
+type GrupoCompra{
+
+    id:ID!,
+    descricao: String,
+    externo: Int,
+    entidadeGestora: Empresa!
+}
+
+input GrupoCompraInput{
+
+    id:ID,
+    descricao: String!,
+    externo: Int!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    grupoCompra(id:ID!):GrupoCompra
+    grupoCompras(entidade:ID!):[GrupoCompra]!
+}
+
+extend type Mutation{
+
+    deletarGrupoCompra(id:ID!):Boolean
+    salvarGrupoCompra(grupoCompraInput:GrupoCompraInput!):GrupoCompra!
+}

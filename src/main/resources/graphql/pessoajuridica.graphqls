@@ -1,0 +1,31 @@
+type PessoaJuridica{
+
+    id:ID!,
+    nomeFantasia: String,
+    razaoSocial: String, 
+    cnpj: String,
+    atividadeComercial: AtividadeComercial!,
+    entidadeGestora: Empresa!
+}
+
+input PessoaJuridicaInput{
+
+    id:ID,
+    nomeFantasia: String!,
+    razaoSocial: String!, 
+    cnpj: String!,
+    atividadeComercial: ID!
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    pessoaJuridica(id:ID!):PessoaJuridica
+    pessoasJuridicas(entidade:ID!):[PessoaJuridica]!
+}
+
+extend type Mutation{
+
+    deletarPessoaJuridica(id:ID!):Boolean
+    salvarPessoaJuridica(pessoaJuridicaInput:PessoaJuridicaInput!):PessoaJuridica!
+}

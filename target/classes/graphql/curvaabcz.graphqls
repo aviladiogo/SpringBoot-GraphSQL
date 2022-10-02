@@ -1,0 +1,29 @@
+type CurvaAbcz{
+
+    id:ID!,
+    descricao: String,
+    tipoCurvaAbcz: TipoCurvaAbcz!,
+    curva: String,
+    entidadeGestora: Empresa!
+}
+
+input CurvaAbczInput{
+
+    id:ID,
+    descricao: String!,
+    tipoCurvaAbcz: ID!,
+    curva: String!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    curvaAbcz(id:ID!):CurvaAbcz
+    curvasAbcz(entidade:ID!):[CurvaAbcz]!
+}
+
+extend type Mutation{
+
+    deletarCurvaAbcz(id:ID!):Boolean
+    salvarCurvaAbcz(curvaAbczInput:CurvaAbczInput!):CurvaAbcz!
+}

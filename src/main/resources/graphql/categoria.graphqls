@@ -1,0 +1,31 @@
+type Categoria{
+
+    id:ID!,
+    descricao: String,
+    secao: Secao!,
+    registro: String,
+    usuario: PessoaFisica!,
+    entidade: PessoaJuridica!
+}
+
+input CategoriaInput{
+
+    id:ID,
+    descricao: String!,
+    secao: ID!,
+    usuario: ID!,
+    entidade: ID!
+}
+
+extend type Query{
+
+    categoria(id:ID!):Categoria
+    categorias(entidade:ID!):[Categoria]!
+    categoriasPorSecao(entidade:ID!, secao:ID!):[Categoria]!
+}
+
+extend type Mutation{
+
+    deletarCategoria(id:ID!):Boolean
+    salvarCategoria(categoriaInput:CategoriaInput!):Categoria!
+}

@@ -1,0 +1,34 @@
+type FornecedorFilial{
+
+    fornecedor: Fornecedor!,
+    filial: Filial!,
+    prazoEntrega: Int,
+    percentualIcms: Float,
+    percentualCofins: Float,
+    compradorPadrao: PessoaFisica!,
+    entidadeGestora: Empresa!
+}
+
+input FornecedorFilialInput{
+
+    fornecedor: ID!,
+    filial: ID!,
+    prazoEntrega: Int!,
+    percentualIcms: Float!,
+    percentualCofins: Float!,
+    compradorPadrao: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    fornecedorFilial(fornecedor:ID!, filial:ID!):FornecedorFilial
+    fornecedoresFilial(entidade:ID!):[FornecedorFilial]!
+}
+
+extend type Mutation{
+
+    deletarFornecedorFilial(fornecedor:ID!, filial:ID!):Boolean
+    salvarFornecedorFilial(fornecedorFilialInput:FornecedorFilialInput!):FornecedorFilial!
+    atualizarFornecedorFilial(fornecedorFilialInput:FornecedorFilialInput!):FornecedorFilial!
+}

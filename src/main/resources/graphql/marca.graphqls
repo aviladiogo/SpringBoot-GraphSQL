@@ -1,0 +1,25 @@
+type Marca{
+
+    id:ID!,
+    descricao: String,
+    entidadeGestora: Empresa!
+}
+
+input MarcaInput{
+
+    id:ID,
+    descricao: String!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    marca(id:ID!):Marca
+    marcas(entidade:ID!):[Marca]!
+}
+
+extend type Mutation{
+
+    deletarMarca(id:ID!):Boolean
+    salvarMarca(marcaInput:MarcaInput!):Marca!
+}

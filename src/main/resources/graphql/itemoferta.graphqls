@@ -1,0 +1,29 @@
+type ItemOferta{
+
+    id:ID!,
+    descricao: String,
+    produto: Produto!,
+    fabricante: Fornecedor!,
+    entidadeGestora: Empresa!
+}
+
+input ItemOfertaInput{
+
+    id:ID,
+    descricao: String!,
+    produto: ID!,
+    fabricante: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    itemOferta(id:ID!):ItemOferta
+    itensOferta(entidade:ID!):[ItemOferta]!
+}
+
+extend type Mutation{
+
+    deletarItemOferta(id:ID!):Boolean
+    salvarItemOferta(itemOfertaInput:ItemOfertaInput!):ItemOferta!
+}

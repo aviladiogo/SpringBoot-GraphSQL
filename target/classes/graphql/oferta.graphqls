@@ -1,0 +1,31 @@
+type Oferta{
+
+    id:ID!,
+    titulo: String,
+    fornecedor: Fornecedor!,
+    inicioValidade: String,
+    FinalValidade: String,
+    entidadeGestora: Empresa!
+}
+
+input OfertaInput{
+
+    id:ID,
+    titulo: String!,
+    fornecedor: ID!,
+    inicioValidade: String!,
+    finalValidade: String!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    oferta(id:ID!):Oferta
+    ofertas(entidade:ID!):[Oferta]!
+}
+
+extend type Mutation{
+
+    deletarOferta(id:ID!):Boolean
+    salvarOferta(ofertaInput:OfertaInput!):Oferta!
+}

@@ -1,0 +1,36 @@
+type EstoqueHistorico{
+
+    id:ID!,
+    dataEstoque: String,
+    entidadeEstoque: Empresa!,
+    almoxarifado: Almoxarifado!,
+    responsavel: PessoaFisica!,
+    produto: Produto!,
+    quantidade: Float,
+    giroVendaDia: Float,
+    entidadeGestora: Empresa!
+}
+
+input EstoqueHistoricoInput{
+
+    id:ID,
+    entidadeEstoque: ID!,
+    almoxarifado: ID!,
+    responsavel: ID!,
+    produto: ID!,
+    quantidade: Float!,
+    giroVendaDia: Float!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    estoqueHistorico(id:ID!):EstoqueHistorico
+    estoquesHistorico(entidade:ID!):[EstoqueHistorico]!
+}
+
+extend type Mutation{
+
+    deletarEstoqueHistorico(id:ID!):Boolean
+    salvarEstoqueHistorico(estoqueHistoricoInput:EstoqueHistoricoInput!):EstoqueHistorico!
+}

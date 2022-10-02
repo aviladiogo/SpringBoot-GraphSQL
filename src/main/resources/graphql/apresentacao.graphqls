@@ -1,0 +1,25 @@
+type Apresentacao{
+
+    id:ID!,
+    descricao: String,
+    entidadeGestora: Empresa!
+}
+
+input ApresentacaoInput{
+
+    id:ID,
+    descricao: String!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    apresentacao(id:ID!):Apresentacao
+    apresentacoes(entidade:ID!):[Apresentacao]!
+}
+
+extend type Mutation{
+
+    deletarApresentacao(id:ID!):Boolean
+    salvarApresentacao(apresentacaoInput:ApresentacaoInput!):Apresentacao!
+}

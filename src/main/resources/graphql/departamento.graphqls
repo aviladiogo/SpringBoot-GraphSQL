@@ -1,0 +1,28 @@
+type Departamento{
+
+    id:ID!,
+    descricao: String,
+    registro: String,
+    usuario: PessoaFisica!,
+    entidade: PessoaJuridica!
+}
+
+input DepartamentoInput{
+
+    id:ID,
+    descricao: String!,
+    usuario: ID!,
+    entidade: ID!
+}
+
+extend type Query{
+
+    departamento(id:ID!):Departamento
+    departamentos(entidade:ID!):[Departamento]!
+}
+
+extend type Mutation{
+
+    deletarDepartamento(id:ID!):Boolean
+    salvarDepartamento(departamentoInput:DepartamentoInput!):Departamento!
+}

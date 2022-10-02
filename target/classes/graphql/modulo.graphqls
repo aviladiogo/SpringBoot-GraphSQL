@@ -1,0 +1,29 @@
+type Modulo{
+
+    id:ID!,
+    descricao: String,
+    ativo: Boolean,
+    sistema: Sistema!,
+    entidadeGestora: Empresa!
+}
+
+input ModuloInput{
+
+    id:ID,
+    descricao: String!,
+    ativo: Boolean!,
+    sistema: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    modulo(id:ID!):Modulo
+    modulos(entidade:ID!):[Modulo]!
+}
+
+extend type Mutation{
+
+    deletarModulo(id:ID!):Boolean
+    salvarModulo(moduloInput:ModuloInput!):Modulo!
+}

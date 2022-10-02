@@ -1,0 +1,27 @@
+type CurvaMargemContribuicao{
+
+    id:ID!,
+    margem: Float,
+    frequencia: Float,
+    entidadeGestora: Empresa!
+}
+
+input CurvaMargemContribuicaoInput{
+
+    id:ID,
+    margem: Float!,
+    frequencia: Float!
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    curvaMargemContribuicao(id:ID!):CurvaMargemContribuicao
+    curvasMargemContribuicao(entidade:ID!):[CurvaMargemContribuicao]!
+}
+
+extend type Mutation{
+
+    deletarCurvaMargemContribuicao(id:ID!):Boolean
+    salvarCurvaMargemContribuicao(curvaMargemContribuicaoInput:CurvaMargemContribuicaoInput!):CurvaMargemContribuicao!
+}

@@ -1,0 +1,27 @@
+type PrazoParcela{
+
+    id:ID!,
+    titulo: String,
+    dias: Int,
+    entidadeGestora: Empresa!
+}
+
+input PrazoParcelaInput{
+
+    id:ID,
+    titulo: String!,
+    dias: Int!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    prazoParcela(id:ID!):PrazoParcela
+    prazoParcelas(entidade:ID!):[PrazoParcela]!
+}
+
+extend type Mutation{
+
+    deletarPrazoParcela(id:ID!):Boolean
+    salvarPrazoParcela(prazoParcelaInput:PrazoParcelaInput!):PrazoParcela!
+}

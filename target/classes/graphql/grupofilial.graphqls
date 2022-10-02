@@ -1,0 +1,27 @@
+type GrupoFilial{
+
+    id:ID!,
+    descricao: String,
+    responsavel: PessoaFisica!,
+    entidadeGestora: Empresa!
+}
+
+input GrupoFilialInput{
+
+    id:ID,
+    descricao: String!,
+    responsavel: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    grupoFilial(id:ID!):GrupoFilial
+    grupoFiliais(entidade:ID!):[GrupoFilial]!
+}
+
+extend type Mutation{
+
+    deletarGrupoFilial(id:ID!):Boolean
+    salvarGrupoFilial(grupoFilialInput:GrupoFilialInput!):GrupoFilial!
+}

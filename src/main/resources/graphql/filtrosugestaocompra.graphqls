@@ -1,0 +1,25 @@
+type FiltroSugestaoCompra{
+
+    listaFornecedores:[Fornecedor]!,
+    listaStatus:[Int],
+    tempoInicio:String,
+    tempoFim:String,
+    usuario:PessoaFisica!
+}
+
+input FiltroSugestaoCompraInput{
+
+    listaFornecedores:[Int]!,
+    listaStatus:[Int]!,
+    tempoInicio:String!,
+    tempoFim:String!,
+    usuario:ID!
+}
+
+extend type Query{
+
+}
+
+extend type Mutation{
+
+}

@@ -1,0 +1,29 @@
+type TipoCurvaAbcz{
+
+    id:ID!,
+    entidadeEstoque: Empresa!,
+    descricao: String,
+    tipoCurva: String,
+    entidadeGestora: Empresa!
+}
+
+input TipoCurvaAbczInput{
+
+    id:ID,
+    entidadeEstoque: ID!,
+    descricao: String!,
+    tipoCurva: String!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    tipoCurvaAbcz(id:ID!):TipoCurvaAbcz
+    tiposCurvaAbcz(entidade:ID!):[TipoCurvaAbcz]!
+}
+
+extend type Mutation{
+
+    deletarTipoCurvaAbcz(id:ID!):Boolean
+    salvarTipoCurvaAbcz(tipoCurvaAbczInput:TipoCurvaAbczInput!):TipoCurvaAbcz!
+}

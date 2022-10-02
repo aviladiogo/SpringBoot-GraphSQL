@@ -1,0 +1,31 @@
+type ClasseProduto{
+
+    id:ID!,
+    titulo: String,
+    descricao: String, 
+    registro: String, 
+    usuario: PessoaFisica!,
+    entidadeGestora: Empresa!
+}
+
+input ClasseProdutoInput{
+
+    id:ID,
+    titulo: String!,
+    descricao: String!,
+    curvas:[Int],
+    usuario: ID!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    classeProduto(id:ID!):ClasseProduto
+    classesProdutos(entidade:ID!):[ClasseProduto]!
+}
+
+extend type Mutation{
+
+    deletarClasseProduto(id:ID!):Boolean
+    salvarClasseProduto(classeProdutoInput:ClasseProdutoInput!):ClasseProduto!
+}

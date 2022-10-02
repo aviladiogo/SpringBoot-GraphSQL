@@ -1,0 +1,27 @@
+type Sistema{
+
+    id:ID!,
+    descricao: String,
+    ativo: Boolean,
+    entidadeGestora: Empresa!
+}
+
+input SistemaInput{
+
+    id:ID,
+    descricao: String!,
+    ativo: Boolean!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    sistema(id:ID!):Sistema
+    sistemas(entidade:ID!):[Sistema]!
+}
+
+extend type Mutation{
+
+    deletarSistema(id:ID!):Boolean
+    salvarSistema(sistemaInput:SistemaInput!):Sistema!
+}

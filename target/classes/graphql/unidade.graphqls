@@ -1,0 +1,25 @@
+type Unidade{
+
+    id:ID!,
+    descricao: String,
+    entidadeGestora: Empresa!
+}
+
+input UnidadeInput{
+
+    id:ID,
+    descricao: String!,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    unidade(id:ID!):Unidade
+    unidades(entidade:ID!):[Unidade]!
+}
+
+extend type Mutation{
+
+    deletarUnidade(id:ID!):Boolean
+    salvarUnidade(unidadeInput:UnidadeInput!):Unidade!
+}

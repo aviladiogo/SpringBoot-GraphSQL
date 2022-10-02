@@ -1,0 +1,31 @@
+type Comprador{
+
+    id:ID!,
+    pessoa: PessoaFisica!,
+    limiteCompra: Float,
+    ativo: Int,
+    compradorLider: PessoaFisica,
+    entidadeGestora: Empresa!
+}
+
+input CompradorInput{
+
+    id:ID,
+    pessoa: ID!,
+    limiteCompra: Float!,
+    ativo: Int!,
+    compradorLider: ID,
+    entidadeGestora: ID!
+}
+
+extend type Query{
+
+    comprador(id:ID!):Comprador
+    compradores(entidade:ID!):[Comprador]!
+}
+
+extend type Mutation{
+
+    deletarComprador(id:ID!):Boolean
+    salvarComprador(compradorInput:CompradorInput!):Comprador!
+}
